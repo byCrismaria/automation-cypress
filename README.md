@@ -61,7 +61,7 @@ O projeto utiliza as seguintes dependências:
 
 * Documentação do Cypress: [https://docs.cypress.io/guides/overview/why-cypress](https://docs.cypress.io/guides/overview/why-cypress)
 * Site AutomationExercise: [https://automationexercise.com/](https://automationexercise.com/)
-* Documentação Faker: [https://fakerjs.dev/guide/] (https://fakerjs.dev/guide/)
+* Documentação Faker: [https://fakerjs.dev/guide/](https://fakerjs.dev/guide/)
 
 **Contribuições**
 
