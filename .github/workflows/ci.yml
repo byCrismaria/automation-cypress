@@ -1,13 +1,24 @@
-name: End-to-end tests
+name: tests
 on: push
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4      
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: 17
+
+      - name: Run tests
+        run: ./gradlew clean test
+  
       - name: Cypress run
         uses: cypress-io/github-action@v6
+
       - uses: actions/upload-artifact@v4
         with:
             name: cypress-screenshots
@@ -17,4 +28,29 @@ jobs:
         with:
             name: cypress-videos
             path: cypress/videos
-            if-no-files-found: ignore 
+            if-no-files-found: ignore       
+            
+      - name: Load test report history
+        uses: actions/upload-artifact@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: build/allure-results
+    
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+      
