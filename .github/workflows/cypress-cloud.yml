@@ -4,7 +4,7 @@ on:
     inputs: 
       spec:
         description: Run by cypress command line
-        default: cypress/e2e/*
+        default: cypress/e2e/**
 jobs:
   cyress-e2e-electron:
     runs-on: ubuntu-latest
@@ -12,7 +12,7 @@ jobs:
       - name: Get Code
         uses: actions/checkout@v4
 
-      - name: cypress run
+      - name: Cypress run
         uses: cypress-io/github-action@v6.5.0
         with: 
           install-command: yarn install 
