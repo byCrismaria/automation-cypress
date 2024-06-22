@@ -24,5 +24,9 @@
     "allure-commandline": "^2.29.0",
     "allure-cypress": "^3.0.0-beta.3",
     "mocha-allure-reporter": "^1.4.0"
+  },
+  "reporter": "mocha-allure-reporter",
+  "reporterOptions": {
+    "targetDir": "allure-results"
   }
 }
