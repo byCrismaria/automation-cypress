@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
 import registerUser from '../../pages/newUser'
 
+
 const dados = {
     name: faker.name.firstName(),
     lastName: faker.name.lastName(),

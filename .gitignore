@@ -1,3 +1,9 @@
+#Directory cypress
+cypress/screenshots/
+cypress/videos/
+allure-results/
+allure-report/
+
 # Logs
 logs
 *.log

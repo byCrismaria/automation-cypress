@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:open": "npx cypress open --env allure=true --browser chrome --headed --reporter mocha-allure-reporter",
+    "allure:report": "allure generate allure-results --clean -o allure-report && allure open allure-report",
+    "allure:clear": "rm -r allure-results/ allure-report cypress/screenshots || true", 
+    "alure:history":  "mv -f allure-report/history allure-results/history && rm -r allure-report || true"
   },
   "keywords": [],
   "author": "Cristiane Delgado",
@@ -15,6 +19,10 @@
     "yarn": "^1.22.22"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.4.1"
+    "@faker-js/faker": "^8.4.1",
+    "@shelex/cypress-allure-plugin": "^2.40.2",
+    "allure-commandline": "^2.29.0",
+    "allure-cypress": "^3.0.0-beta.3",
+    "mocha-allure-reporter": "^1.4.0"
   }
 }
