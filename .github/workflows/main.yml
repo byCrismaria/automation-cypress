@@ -47,7 +47,7 @@ jobs:
         if: always()
         run: |
           mkdir -p gh-pages/allure-report
-          cp -r allure-report/* gh-pages/allure-report/
+          cp -r allure-report/** gh-pages/allure-report/
       
       - name: Commit and Push Allure Report
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -55,7 +55,7 @@ jobs:
         with:
           commit_message: "Update Allure Report"
           branch: gh-pages
-          file_pattern: gh-pages/allure-report/**/*
+          file_pattern: gh-pages/allure-report/**/**
 
       - name: Publish Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
