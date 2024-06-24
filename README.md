@@ -13,7 +13,7 @@ Este projeto Cypress fornece um conjunto de testes para praticar a automação d
 * **Adição de produtos ao carrinho**
 * **Finalização de compra**
 * **Geração do relatório Allure-report**
-* **Workflows Cypress Cloud Integration**
+* **Workflows Cypress Cloud Integration e Cypress tests**
 
 **Instalação**
 
@@ -71,7 +71,7 @@ O projeto utiliza as seguintes dependências:
 * Documentação do Cypress: [https://docs.cypress.io/guides/overview/why-cypress](https://docs.cypress.io/guides/overview/why-cypress)
 * Site AutomationExercise: [https://automationexercise.com/](https://automationexercise.com/)
 * Documentação Faker: [https://fakerjs.dev/guide/](https://fakerjs.dev/guide/)
-* * Documentação Allure-report: [https://allurereport.org/docs/cypress/](https://allurereport.org/docs/cypress/)
+* Documentação Allure-report: [https://allurereport.org/docs/cypress/](https://allurereport.org/docs/cypress/)
   
 
 **Contribuições**
