@@ -12,6 +12,8 @@ Este projeto Cypress fornece um conjunto de testes para praticar a automação d
 * **Navegação no site**
 * **Adição de produtos ao carrinho**
 * **Finalização de compra**
+* **Geração do relatório Allure-report**
+* **Workflows Cypress Cloud Integration**
 
 **Instalação**
 
@@ -22,13 +24,17 @@ Para baixar e utilizar o projeto, siga estas etapas:
 ```bash
 git clone https://github.com/byCrismaria/automation-cypress.git
 ```
-
+2. **Instalar o Allure-report**
+   
+```bash
+   npm install -g allure-commandline --save-dev
+```
 **Requisitos de Software**
-
 Para executar os testes deste projeto, você precisará ter o seguinte software instalado em seu computador:
 
 * **Node.js:** Versão 14 ou superior
 * **Yarn:** Versão 1.22.22 ou superior
+
 
 **Executando os Testes**
 
@@ -42,6 +48,9 @@ Para executar os testes caso tenha yarn instalado, execute o seguinte comando:
 ```bash
 yarn cypress open
 ```
+**Running Tests com GitHub Actions**
+
+Este projeto inclui dois fluxos de trabalho do GitHub Actions: um para executar Cypress tests que irar gerar o relatório Allure e outro para executar testes no Cypress Cloud.
 
 **Dependências**
 
@@ -62,6 +71,8 @@ O projeto utiliza as seguintes dependências:
 * Documentação do Cypress: [https://docs.cypress.io/guides/overview/why-cypress](https://docs.cypress.io/guides/overview/why-cypress)
 * Site AutomationExercise: [https://automationexercise.com/](https://automationexercise.com/)
 * Documentação Faker: [https://fakerjs.dev/guide/](https://fakerjs.dev/guide/)
+* * Documentação Allure-report: [https://allurereport.org/docs/cypress/](https://allurereport.org/docs/cypress/)
+  
 
 **Contribuições**
 
