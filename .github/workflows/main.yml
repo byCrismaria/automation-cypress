@@ -18,9 +18,8 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: 
-          yarn install
           yarn add --dev allure-commandline 
-
+          
       - name: Run E2E tests
         run: ${{ github.event.inputs.cli }}
 
