@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run:
           yarn install
-          npm install -g allure-commandline --save-dev
+          yarn install -g allure-commandline 
 
       - name: Run E2E tests
         run: ${{ github.event.inputs.cli }}
