@@ -12,10 +12,8 @@ Este projeto Cypress fornece um conjunto de testes para praticar a automação d
 * **Navegação no site**
 * **Adição de produtos ao carrinho**
 * **Finalização de compra**
-* **Geração do relatório Allure-report**
-* **Workflows Cypress Cloud Integration e Cypress tests**
-
-**Instalação**
+* **Workflows** 
+* **Instalação**
 
 Para baixar e utilizar o projeto, siga estas etapas:
 
@@ -50,7 +48,10 @@ yarn cypress open
 ```
 **Running Tests com GitHub Actions**
 
-Este projeto inclui dois fluxos de trabalho do GitHub Actions: um para executar Cypress tests que irar gerar o relatório Allure e outro para executar testes no Cypress Cloud.
+Este projeto inclui até o momento três fluxos de trabalho do GitHub Actions:
+* **Cypress Cloud Integration:** Integração com o cypress cloud; 
+* **Cypress tests:** Geração do relatório Allure-report;
+* **Cypress tesults:** Pipeline multi-browser com Tesult;
 
 **Dependências**
 
@@ -72,7 +73,7 @@ O projeto utiliza as seguintes dependências:
 * Site AutomationExercise: [https://automationexercise.com/](https://automationexercise.com/)
 * Documentação Faker: [https://fakerjs.dev/guide/](https://fakerjs.dev/guide/)
 * Documentação Allure-report: [https://allurereport.org/docs/cypress/](https://allurereport.org/docs/cypress/)
-  
+* Documentação Tesults: [https://www.tesults.com/docs/cypress](https://www.tesults.com/docs/cypress)  
 
 **Contribuições**
 
