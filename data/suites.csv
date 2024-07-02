@@ -1,2 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Mon Jun 24 01:57:23 UTC 2024","Mon Jun 24 01:57:33 UTC 2024","10125","","test with automation exercise ","","test with automation exercise ","Test Case 1: Register User","Test Case 1: Register User",""
+"passed","Tue Jul 02 02:14:01 UTC 2024","Tue Jul 02 02:14:11 UTC 2024","9068","","test with automation exercise ","","test with automation exercise ","Test Case 1: Register User","Test Case 1: Register User",""
