@@ -21,7 +21,8 @@ const dados = {
     year: '2000',
     country: 'Australia',
     messageCongratulations: 'Congratulations! Your new account has been successfully created!',
-    messageDeleteAccount: 'Your account has been permanently deleted!'
+    messageDeleteAccount: 'Your account has been permanently deleted!',
+    userName: 'cytestes'
 }
 
 describe('test with automation exercise ', () => {
@@ -37,15 +38,25 @@ describe('test with automation exercise ', () => {
         registerUser.checkAccountDeleted(dados)
     });
 
-    /*     it('check if the user is already registered', () => {
-    
-            cy.visit('https://automationexercise.com/login');
-            cy.title().should('eq','Automation Exercise - Signup / Login')
-            cy.get('input[type="text"]').first().click().type('cytestes')
-            cy.get('input[data-qa="signup-email"]').first().click().type('testescy@testes.com.br')
-            cy.get('button[data-qa="signup-button"]').click()  
-            cy.get('.signup-form > form > p').contains('Email Address already exist!').should('be.visible')
-        }) */
+   /*  it('check if the user is already registered', () => {
+
+        cy.visit('https://automationexercise.com/login');
+        cy.title().should('eq', 'Automation Exercise - Signup / Login')
+        cy.get('input[type="text"]').first().click().type('cytestes')
+        cy.get('input[data-qa="signup-email"]').first().click().type('testescy@testes.com.br')
+        cy.get('button[data-qa="signup-button"]').click()
+        cy.get('.signup-form > form > p').contains('Email Address already exist!').should('be.visible')
+    }) */
+
+    it('Test Case 2: Login User with correct email and password', () => {
+        registerUser.go()
+        registerUser.userRegister(dados)
+        registerUser.checkAccountCreated(dados)
+        registerUser.checkSignupLogin()
+        registerUser.go()
+        registerUser.LoginUser(dados)
+        registerUser.checkAccountDeleted(dados)
+    })
 
 
 

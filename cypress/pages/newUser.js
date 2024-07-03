@@ -1,4 +1,4 @@
-import { elLoginPageLocators, elCreatAccount, elDeletedAccount } from "./components"
+import { elLoginPageLocators, elCreatAccount, elDeletedAccount, elLoginUser } from "./components"
 
 class registerUser {
 
@@ -43,6 +43,16 @@ class registerUser {
         .get(elDeletedAccount.deleteButton).click()
         .get(elDeletedAccount.confirmDeleteButton).contains(dados.messageDeleteAccount).should('exist')
 
+    }
+    LoginUser (dados) {
+        cy.get(elLoginUser.elementLoginFormText).should('have.text',elLoginUser.loginFormText)
+        cy.get(elLoginUser.inputLogin).click().type(dados.email)
+        cy.get(elLoginUser.inputPassword).click().type(dados.emailsenha)
+        cy.get(elLoginUser.loginButton).click()
+        cy.get(elLoginUser.dadosUserText).should('have.text', dados.userName);  // Finds the <b> element with text "cytestes"
+    }
+    checkSignupLogin (){
+        cy.get(elLoginUser.signupLoginMenu).click()
     }
 }
 export default new registerUser;

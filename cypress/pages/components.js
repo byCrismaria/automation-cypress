@@ -24,9 +24,19 @@ exports.elLoginPageLocators = {
 exports.elCreatAccount = {
     messageCongratulations: '.col-sm-9 > :nth-child(2)',
     continueButton: '[data-qa="continue-button"]'   
-}
+};
 
 exports.elDeletedAccount = {
     deleteButton : '.shop-menu > .nav > :nth-child(5) > a',
     confirmDeleteButton : '.col-sm-9 > :nth-child(2)'
-}
+};
+
+exports.elLoginUser ={
+    elementLoginFormText : 'div[class="login-form"] > h2',
+    loginFormText : 'Login to your account',
+    inputLogin : 'input[data-qa="login-email"]',
+    inputPassword : 'input[data-qa="login-password"]',
+    loginButton : 'button[data-qa="login-button"]', 
+    dadosUserText: 'li a b',
+    signupLoginMenu: '.shop-menu > .nav > :nth-child(4) > a'
+};
