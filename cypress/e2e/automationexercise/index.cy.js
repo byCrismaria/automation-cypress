@@ -14,15 +14,20 @@ const dados = {
     zipcode: faker.address.zipCode(),
     mobile: faker.phone.number(),
     email: faker.internet.email(),
-    emaillogin: 'testescy@testes.com.br',
-    emailsenha: 'cypress@#$',
     day: '28',
     month: 'March',
     year: '2000',
     country: 'Australia',
     messageCongratulations: 'Congratulations! Your new account has been successfully created!',
     messageDeleteAccount: 'Your account has been permanently deleted!',
-    userName: 'cytestes'
+    userName: 'cytestes',
+    emailsenha: 'cypress@#$'
+}
+
+const dadosUser = {
+    emaillogin: 'testescy@testes.com.br',
+    emailsenha: 'cypress@#$',
+    emailsenhaWrong: 'cypress@#$uiui'
 }
 
 describe('test with automation exercise ', () => {
@@ -56,6 +61,12 @@ describe('test with automation exercise ', () => {
         registerUser.go()
         registerUser.LoginUser(dados)
         registerUser.checkAccountDeleted(dados)
+    })
+
+    it('Test Case 3: Login User with incorrect email and password', () =>{
+        registerUser.go()  
+        registerUser.checkPasswordIncorrect(dadosUser)    
+
     })
 
 

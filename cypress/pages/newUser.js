@@ -54,6 +54,15 @@ class registerUser {
     checkSignupLogin (){
         cy.get(elLoginUser.signupLoginMenu).click()
     }
+    checkPasswordIncorrect(dadosUser){
+        cy.get(elLoginUser.elementLoginFormText).should('have.text',elLoginUser.loginFormText)
+        cy.get(elLoginUser.inputLogin).click().type(dadosUser.emaillogin)
+        cy.get(elLoginUser.inputPassword).click().type(dadosUser.emailsenhaWrong)
+        cy.get(elLoginUser.loginButton).click()
+        cy.contains(elLoginUser.passwordWrong, elLoginUser.msgpasswordWrong)
+    }
+
+
 }
 export default new registerUser;
 

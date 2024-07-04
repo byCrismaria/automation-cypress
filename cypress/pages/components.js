@@ -38,5 +38,7 @@ exports.elLoginUser ={
     inputPassword : 'input[data-qa="login-password"]',
     loginButton : 'button[data-qa="login-button"]', 
     dadosUserText: 'li a b',
-    signupLoginMenu: '.shop-menu > .nav > :nth-child(4) > a'
+    signupLoginMenu: '.shop-menu > .nav > :nth-child(4) > a',
+    passwordWrong: 'p',
+    msgpasswordWrong: 'Your email or password is incorrect!'
 };
