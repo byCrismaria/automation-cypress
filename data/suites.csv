@@ -1,3 +1,4 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Wed Jul 03 02:28:11 UTC 2024","Wed Jul 03 02:28:21 UTC 2024","10037","","test with automation exercise ","","test with automation exercise ","Test Case 1: Register User","Test Case 1: Register User",""
-"passed","Wed Jul 03 02:28:21 UTC 2024","Wed Jul 03 02:28:32 UTC 2024","11823","","test with automation exercise ","","test with automation exercise ","Test Case 2: Login User with correct email and password","Test Case 2: Login User with correct email and password",""
+"passed","Thu Jul 04 02:09:46 UTC 2024","Thu Jul 04 02:09:48 UTC 2024","2077","","test with automation exercise ","","test with automation exercise ","Test Case 3: Login User with incorrect email and password","Test Case 3: Login User with incorrect email and password",""
+"passed","Thu Jul 04 02:09:26 UTC 2024","Thu Jul 04 02:09:35 UTC 2024","9113","","test with automation exercise ","","test with automation exercise ","Test Case 1: Register User","Test Case 1: Register User",""
+"passed","Thu Jul 04 02:09:35 UTC 2024","Thu Jul 04 02:09:46 UTC 2024","11527","","test with automation exercise ","","test with automation exercise ","Test Case 2: Login User with correct email and password","Test Case 2: Login User with correct email and password",""
