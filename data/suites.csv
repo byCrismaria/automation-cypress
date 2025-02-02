@@ -1,4 +1,4 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Thu Jul 04 02:09:46 UTC 2024","Thu Jul 04 02:09:48 UTC 2024","2077","","test with automation exercise ","","test with automation exercise ","Test Case 3: Login User with incorrect email and password","Test Case 3: Login User with incorrect email and password",""
-"passed","Thu Jul 04 02:09:26 UTC 2024","Thu Jul 04 02:09:35 UTC 2024","9113","","test with automation exercise ","","test with automation exercise ","Test Case 1: Register User","Test Case 1: Register User",""
-"passed","Thu Jul 04 02:09:35 UTC 2024","Thu Jul 04 02:09:46 UTC 2024","11527","","test with automation exercise ","","test with automation exercise ","Test Case 2: Login User with correct email and password","Test Case 2: Login User with correct email and password",""
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","9628","Test Case 2: Login User with correct email and password","","Sun Feb 02 20:44:14 UTC 2025","passed","Sun Feb 02 20:44:24 UTC 2025","","test with automation exercise ","test with automation exercise ","Test Case 2: Login User with correct email and password"
+"","7907","Test Case 1: Register User","","Sun Feb 02 20:44:06 UTC 2025","passed","Sun Feb 02 20:44:14 UTC 2025","","test with automation exercise ","test with automation exercise ","Test Case 1: Register User"
+"","1627","Test Case 3: Login User with incorrect email and password","","Sun Feb 02 20:44:24 UTC 2025","passed","Sun Feb 02 20:44:25 UTC 2025","","test with automation exercise ","test with automation exercise ","Test Case 3: Login User with incorrect email and password"
