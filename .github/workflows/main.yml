@@ -35,8 +35,9 @@ jobs:
         run: 
           PATH=$PATH:$(yarn bin)
           allure generate allure-results -o allure-report --clean
-          cp -r allure-history/history/. allure-report/history/ # Copiar o histórico para o relatório Allure
-      
+          mkdir -p allure-report/history
+          cp -r allure-history/history/. allure-report/history/ 
+          
       - name: Upload Allure Results
         uses: actions/upload-artifact@v4
         with:
