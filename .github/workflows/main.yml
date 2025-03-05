@@ -18,18 +18,29 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: 
-          yarn add --dev allure-commandline 
+          yarn install
+          yarn add --dev allure-commandline mocha-allure-reporter 
           
       - name: Run E2E tests
         run: ${{ github.event.inputs.cli }}
       
-      - name: Carregar histórico de relatórios de testes
+      - name: Get Allure history
         uses:  actions/checkout@v4
         if: always()
         continue-on-error: true
         with: 
           ref: gh-pages
-          path: allure-history
+          path: gh-pages
+
+      - name: Test marketplace action
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
 
       - name: Generate Allure report
         run: 
@@ -73,7 +84,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: gh-pages/allure-report
-          destination_dir: allure-history
       
 
 
