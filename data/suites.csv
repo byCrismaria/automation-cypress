@@ -1,4 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","8201","Test Case 1: Register User","","Wed Mar 05 01:14:48 UTC 2025","passed","Wed Mar 05 01:14:56 UTC 2025","","test with automation exercise ","test with automation exercise ","Test Case 1: Register User"
-"","1492","Test Case 3: Login User with incorrect email and password","","Wed Mar 05 01:15:06 UTC 2025","passed","Wed Mar 05 01:15:08 UTC 2025","","test with automation exercise ","test with automation exercise ","Test Case 3: Login User with incorrect email and password"
-"","10398","Test Case 2: Login User with correct email and password","","Wed Mar 05 01:14:56 UTC 2025","passed","Wed Mar 05 01:15:06 UTC 2025","","test with automation exercise ","test with automation exercise ","Test Case 2: Login User with correct email and password"
