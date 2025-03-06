@@ -1,10 +1,12 @@
 name: Cypress tests allure-report
+
 on: 
   workflow_dispatch: 
     inputs: 
       cli:
         description: Run by cypress command line
         default: yarn cypress run --reporter mocha-allure-reporter
+
 jobs:
   cyress-electron-tests:
     runs-on: ubuntu-latest
@@ -20,9 +22,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
       
-      - name: Run E2E tests
-        run: ${{ github.event.inputs.cli }}
-      
+      #Baixar histórico anterior do Allure
       - name: Get Allure history
         uses: actions/checkout@v4
         if: always()
@@ -31,18 +31,23 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Prepare Allure history
+      #Copiar histórico para allure-results antes dos testes
+      - name: Restore Allure history
         run: |
-          mkdir -p allure-report/history || true
+          mkdir -p allure-results/history || true
           if [ -d "gh-pages/allure-report/last-history" ]; then
-            cp -r gh-pages/allure-report/last-history/. allure-report/history/ || true
+            cp -r gh-pages/allure-report/last-history/. allure-results/history/ || true
           fi
-
+      
+      - name: Run E2E tests
+        run: ${{ github.event.inputs.cli }}
+      
+      #Gerar relatório Allure sem apagar histórico
       - name: Generate Allure report
         run: |
           PATH=$PATH:$(yarn bin)
           allure generate allure-results -o allure-report --clean
-
+      
       - name: Upload Allure Results
         uses: actions/upload-artifact@v4
         with:
@@ -57,12 +62,13 @@ jobs:
           path: gh-pages
           fetch-depth: 1
       
+      #Copiar relatório e histórico atualizado para gh-pages
       - name: Copy Allure Report to gh-pages
         if: ${{ success() }}
         run: |
           mkdir -p gh-pages/allure-report || true
           cp -r allure-report/** gh-pages/allure-report/
-          cp -r allure-report/history/. gh-pages/allure-report/last-history/ || true
+          cp -r allure-results/history/. gh-pages/allure-report/last-history/ || true
       
       - name: Commit and Push Allure Report
         uses: stefanzweifel/git-auto-commit-action@v5
