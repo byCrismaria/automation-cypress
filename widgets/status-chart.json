@@ -1,1 +1,1 @@
-[]
+[{"uid":"9efb541f7f3e1825","name":"Test Case 1: Register User","time":{"start":1741228394858,"stop":1741228408531,"duration":13673},"status":"passed","severity":"normal"},{"uid":"e7c16ab306c1e153","name":"Test Case 2: Login User with correct email and password","time":{"start":1741228408553,"stop":1741228424646,"duration":16093},"status":"passed","severity":"normal"},{"uid":"4cc0e32d784430c4","name":"Test Case 3: Login User with incorrect email and password","time":{"start":1741228424664,"stop":1741228426040,"duration":1376},"status":"passed","severity":"normal"}]
