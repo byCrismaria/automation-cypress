@@ -16,38 +16,32 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+
       - name: Install dependencies
-        run: 
-          yarn add --dev allure-commandline 
-          
+        run: yarn install
+      
       - name: Run E2E tests
         run: ${{ github.event.inputs.cli }}
       
       - name: Get Allure history
-        uses:  actions/checkout@v4
+        uses: actions/checkout@v4
         if: always()
         continue-on-error: true
         with: 
           ref: gh-pages
           path: gh-pages
 
-      - name: Test marketplace action
-        uses: simple-elf/allure-report-action@master
-        if: always()
-        id: allure-report
-        with:
-          allure_results: build/allure-results
-          gh_pages: gh-pages
-          allure_report: allure-report
-          allure_history: allure-history
+      - name: Prepare Allure history
+        run: |
+          mkdir -p allure-report/history || true
+          if [ -d "gh-pages/allure-report/last-history" ]; then
+            cp -r gh-pages/allure-report/last-history/. allure-report/history/ || true
+          fi
 
       - name: Generate Allure report
-        run: 
+        run: |
           PATH=$PATH:$(yarn bin)
-          mkdir -p allure-report || true
-          allure generate allure-results -o allure-report --clean || true
-          mkdir -p allure-report/history || true
-          cp -r gh-pages/allure-report/last-history
+          allure generate allure-results -o allure-report --clean
 
       - name: Upload Allure Results
         uses: actions/upload-artifact@v4
@@ -67,7 +61,8 @@ jobs:
         if: ${{ success() }}
         run: |
           mkdir -p gh-pages/allure-report || true
-          cp -r allure-report/* gh-pages/allure-report/
+          cp -r allure-report/** gh-pages/allure-report/
+          cp -r allure-report/history/. gh-pages/allure-report/last-history/ || true
       
       - name: Commit and Push Allure Report
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -76,7 +71,7 @@ jobs:
           commit_message: "Update Allure Report"
           branch: gh-pages
           file_pattern: gh-pages/allure-report/**/**
-
+      
       - name: Publish Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         if: ${{ success() }}
@@ -84,7 +79,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: gh-pages/allure-report
-      
-
-
-      
