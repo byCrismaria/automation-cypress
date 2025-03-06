@@ -47,9 +47,7 @@ jobs:
           mkdir -p allure-report || true
           allure generate allure-results -o allure-report --clean || true
           mkdir -p allure-report/history || true
-          if [ -d "allure-history/history" ]; then
-            cp -r allure-history/history/. allure-report/history/
-          fi
+          cp -r gh-pages/allure-report/last-history
 
       - name: Upload Allure Results
         uses: actions/upload-artifact@v4
