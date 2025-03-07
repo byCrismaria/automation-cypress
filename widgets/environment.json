@@ -1,1 +1,0 @@
-[{"values":["linux"],"name":"OS_Platform"},{"values":["6.8.0-1021-azure"],"name":"OS_Release"},{"values":["#25-Ubuntu SMP Wed Jan 15 20:45:09 UTC 2025"],"name":"OS_Version"},{"values":["v18.20.7"],"name":"Node_Version"},{"values":["14.1.0"],"name":"Cypress_Version"}]
