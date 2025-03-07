@@ -38,6 +38,8 @@ jobs:
       - name: Generate Allure report
         run: |
           PATH=$PATH:$(yarn bin)
+          mkdir -p allure-results/history || true
+          cp -rf gh-pages/allure-report/history/* allure-results/history/ || true
           allure generate allure-results -o allure-report --clean
 
       - name: Allure Report action from marketplace
@@ -69,7 +71,7 @@ jobs:
         if: ${{ success() }}
         run: |
           mkdir -p gh-pages/allure-report || true
-          cp -r allure-report/** gh-pages/allure-report/
+          cp -r allure-report/* gh-pages/allure-report/
       
       - name: Commit and Push Allure Report
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -85,4 +87,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: gh-pages/allure-history
+          publish_dir: gh-pages/allure-report
