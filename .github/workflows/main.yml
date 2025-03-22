@@ -78,3 +78,10 @@ jobs:
           branch: gh-pages
           file_pattern: gh-pages/allure-report/**/**
 
+      - name: Publish Allure Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        if: ${{ success() }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: gh-pages/allure-report
