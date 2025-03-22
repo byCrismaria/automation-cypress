@@ -33,6 +33,7 @@ jobs:
         run: ${{ github.event.inputs.cli }}
       
       - name: Copy Allure history
+        if: ${{ success() }}
         run: |
           mkdir -p allure-results/history
           if [ -d "gh-pages/allure-report/history" ]; then
@@ -43,6 +44,9 @@ jobs:
       
       - name: Generate Allure report
         run: |
+          PATH=$PATH:$(yarn bin)
+          mkdir -p allure-results/history || true
+          cp -rf gh-pages/allure-report/history/* allure-results/history/ || true
           allure generate allure-results -o allure-report --clean
       
       - name: Upload Allure Results
