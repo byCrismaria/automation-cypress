@@ -24,11 +24,21 @@ jobs:
       
       #Baixar histórico anterior do Allure
       - name: Download Allure history artifact
+        id: download_history
         uses: actions/download-artifact@v4
         with:
           name: allure-history
           path: allure-results/history
         continue-on-error: true
+
+      - name: Verify Allure History
+        run: |
+          if [ -d "allure-results/history" ]; then
+            echo "Allure history found."
+          else
+            echo "No previous Allure history found."
+            mkdir -p allure-results/history
+          fi     
 
       - name: Run Cypress E2E tests
         run: ${{ github.event.inputs.cli }}
@@ -50,22 +60,7 @@ jobs:
         if: ${{ success() }}
         with:
           name: allure-report
-          path: allure-report   
-      
-      #Copiar relatório atualizado para gh-pages
-      - name: Copy new Allure Report to gh-pages
-        if: ${{ success() }}
-        run: |
-          mkdir -p gh-pages/allure-report || true
-          cp -r allure-report/* gh-pages/allure-report/
-      
-      - name: Commit and Push Allure Report
-        uses: stefanzweifel/git-auto-commit-action@v5
-        if: ${{ success() }}
-        with:
-          commit_message: "Update Allure Report"
-          branch: gh-pages
-          file_pattern: gh-pages/allure-report/**
+          path: allure-report
 
       - name: Publish Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
