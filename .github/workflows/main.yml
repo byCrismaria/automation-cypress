@@ -23,45 +23,34 @@ jobs:
         run: yarn install
       
       #Baixar histórico anterior do Allure
-      - name: Download Allure history
-        uses: actions/checkout@v4
-        with: 
-          ref: gh-pages
-          path: gh-pages
+      - name: Download Allure history artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-history
+          path: allure-results/history
+        continue-on-error: true
 
       - name: Run Cypress E2E tests
         run: ${{ github.event.inputs.cli }}
-      
-      - name: Copy Allure history
-        if: ${{ success() }}
-        run: |
-          mkdir -p allure-results/history
-          if [ -d "gh-pages/allure-report/history" ]; then
-            cp -rf gh-pages/allure-report/histoty/* allure-results/history/
-           else
-            echo "No previous Allure history found."
-          fi
-      
+          
       - name: Generate Allure report
         run: |
           PATH=$PATH:$(yarn bin)
-          mkdir -p allure-results/history || true
-          cp -rf gh-pages/allure-report/history/* allure-results/history/ || true
           allure generate allure-results -o allure-report --clean
       
-      - name: Upload Allure Results
+      - name: Upload Allure History
         uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: allure-results
-      
-      - name: Checkout gh-pages
-        uses: actions/checkout@v4
         if: ${{ success() }}
         with:
-          ref: gh-pages
-          path: gh-pages
-          fetch-depth: 1
+          name: allure-history
+          path: allure-report/history
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        if: ${{ success() }}
+        with:
+          name: allure-report
+          path: allure-report   
       
       #Copiar relatório atualizado para gh-pages
       - name: Copy new Allure Report to gh-pages
@@ -76,7 +65,7 @@ jobs:
         with:
           commit_message: "Update Allure Report"
           branch: gh-pages
-          file_pattern: gh-pages/allure-report/**/**
+          file_pattern: gh-pages/allure-report/**
 
       - name: Publish Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
