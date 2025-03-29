@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
       
-      #Baixar histórico anterior do Allure
+      # Baixar histórico anterior do Allure
       - name: Download Allure history artifact
         uses: actions/download-artifact@v4
         with:
