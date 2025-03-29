@@ -22,58 +22,33 @@ jobs:
       - name: Install dependencies
         run: yarn install
       
-      # Baixar histórico anterior do Allure
-      - name: Download Allure history artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: allure-history
-          path: allure-results/history
+      #Baixar histórico anterior do Allure
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
         continue-on-error: true
+        with:
+          ref: gh-pages
+          path: allure-history
 
-      - name: Verify Allure History
-        run: |
-          if [ -d "allure-results/history" ]; then
-            echo "Allure history found."
-          else
-            echo "No previous Allure history found."
-            mkdir -p allure-results/history
-          fi     
-
-      - name: Run Cypress E2E tests
+      - name: Run Cypress tests
         run: ${{ github.event.inputs.cli }}
-          
-      - name: Generate Allure report
+
+      - name: Generate Allure Report
+        if: always()
         run: |
           PATH=$PATH:$(yarn bin)
           allure generate allure-results -o allure-report --clean
-
-      - name: Archive Allure Report
-        run: |
-          mkdir -p allure-report-history
-          cp -r allure-report/* allure-report-history/
-          mkdir -p allure-report-history/history
-          if [ -d "allure-results/history" ]; then
-            cp -r allure-results/history/* allure-report-history/history/
+          # Copiar histórico se existir
+          if [ -d "allure-history/history" ]; then
+            cp -r allure-history/history allure-report/
           fi
-      
-      - name: Upload Allure History
-        uses: actions/upload-artifact@v4
-        if: ${{ success() }}
-        with:
-          name: allure-history
-          path: allure-report-history/history
-
-      - name: Upload Allure Report
-        uses: actions/upload-artifact@v4
-        if: ${{ success() }}
-        with:
-          name: allure-report
-          path: allure-report-history
-
-      - name: Publish Allure Report to GitHub Pages
+          
+      - name: Deploy report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
-        if: ${{ success() }}
+        if: ${{ success() }}        
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-report-history
+          publish_dir: allure-report
+        
