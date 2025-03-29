@@ -38,22 +38,13 @@ jobs:
         if: always()
         run: |
           PATH=$PATH:$(yarn bin)
-          
-          # 1. Criar estrutura de diretórios
-          mkdir -p allure-results/history
-          
-          # 2. Copiar arquivos individuais
-          if [ -f "allure-history/history.json" ]; then
-            cp allure-history/history.json allure-results/history/
-            cp allure-history/history-trend.json allure-results/history/
-            cp allure-history/duration-trend.json allure-results/history/
-            cp allure-history/retry-trend.json allure-results/history/
+          # Copiar histórico se existir
+          if [ -d "allure-history/history" ]; then
+            mkdir -p allure-results/history
+            cp -r allure-history/history allure-results/
           fi
-          
-          # 3. Gerar relatório com histórico e limpar 
           allure generate allure-results -o allure-report --clean
-          
-          # 4. Garantir que o histórico seja mantido no relatório final
+          # Mover o histórico copiado para o relatório gerado
           if [ -d "allure-results/history" ]; then
             cp -r allure-results/history allure-report/
           fi         
@@ -65,5 +56,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-report
-
+          
         
