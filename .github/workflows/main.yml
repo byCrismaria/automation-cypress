@@ -5,7 +5,7 @@ on:
     inputs: 
       cli:
         description: Run Cypress tests via command line
-        default: yarn cypress run --reporter mocha-allure-reporter -- --enable-unsafe-swiftshader #tratamento do fallback automático para WebGL
+        default: yarn cypress run --reporter mocha-allure-reporter 
 
 jobs:
   cyress-electron-tests:
