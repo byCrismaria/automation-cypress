@@ -5,7 +5,7 @@ on:
     inputs: 
       cli:
         description: Run Cypress tests via command line
-        default: yarn cypress run --reporter mocha-allure-reporter
+        default: yarn cypress run --reporter mocha-allure-reporter -- --enable-unsafe-swiftshader #tratamento do fallback automático para WebGL
 
 jobs:
   cyress-electron-tests:
@@ -40,7 +40,8 @@ jobs:
           PATH=$PATH:$(yarn bin)
           # Copiar histórico se existir
           if [ -d "allure-history/history" ]; then
-            cp -r allure-history/history allure-report/
+            mkdir -p allure-results/history
+            cp -r allure-history/history allure-results/
           fi
           allure generate allure-results -o allure-report --clean
           # Mover o histórico copiado para o relatório gerado
