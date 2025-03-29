@@ -52,7 +52,9 @@ jobs:
           mkdir -p allure-report-history
           cp -r allure-report/* allure-report-history/
           mkdir -p allure-report-history/history
-          cp -r allure-results/history/* allure-report-history/history/
+          if [ -d "allure-results/history" ]; then
+            cp -r allure-results/history/* allure-report-history/history/
+          fi
       
       - name: Upload Allure History
         uses: actions/upload-artifact@v4
