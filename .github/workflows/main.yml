@@ -47,7 +47,13 @@ jobs:
           # Mover o histórico copiado para o relatório gerado
           if [ -d "allure-results/history" ]; then
             cp -r allure-results/history allure-report/
-          fi         
+          fi
+          # Manter apenas o histórico dos últimos 20 testes
+          if [ -d "allure-report/history" ]; then
+            cd allure-report/history
+            ls -tp | grep -v '/$' | tail -n +21 | xargs -I {} rm -- {}
+            cd ../..
+          fi    
           
       - name: Deploy report to GitHub Pages
         if: always()
