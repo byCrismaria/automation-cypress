@@ -51,6 +51,7 @@ jobs:
         run: |
           mkdir -p allure-report-history
           cp -r allure-report/* allure-report-history/
+          mkdir -p allure-report-history/history
           cp -r allure-results/history/* allure-report-history/history/
       
       - name: Upload Allure History
