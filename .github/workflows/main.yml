@@ -28,24 +28,31 @@ jobs:
         if: always()
         continue-on-error: true
         with:
-          ref: allure
-          path: allure
+          ref: gh-pages
+          path: allure-history
 
       - name: Run Cypress tests
         run: ${{ github.event.inputs.cli }}
 
       - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@master
         if: always()
-        with:
-          allure_results: allure-results
-          gh_pages: allure
+        run: |
+          PATH=$PATH:$(yarn bin)
+          # Copiar histórico se existir
+          if [ -d "allure-history/history" ]; then
+            cp -r allure-history/history allure-report/
+          fi
+          allure generate allure-results -o allure-report --clean
+          # Mover o histórico copiado para o relatório gerado
+          if [ -d "allure-results/history" ]; then
+            cp -r allure-results/history allure-report/
+          fi         
           
       - name: Deploy report to GitHub Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v4
-        if: ${{ success() }}        
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: allure
-          publish_dir: allure-history
+          publish_branch: gh-pages
+          publish_dir: allure-report
         
