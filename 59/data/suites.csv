@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sun Mar 30 20:21:38 GMT 2025","Sun Mar 30 20:21:47 GMT 2025","8457","","test with automation exercise ","","test with automation exercise ","Test Case 1: Register User","Test Case 1: Register User",""
+"passed","Sun Mar 30 20:21:56 GMT 2025","Sun Mar 30 20:21:58 GMT 2025","1359","","test with automation exercise ","","test with automation exercise ","Test Case 3: Login User with incorrect email and password","Test Case 3: Login User with incorrect email and password",""
+"passed","Sun Mar 30 20:21:47 GMT 2025","Sun Mar 30 20:21:56 GMT 2025","9265","","test with automation exercise ","","test with automation exercise ","Test Case 2: Login User with correct email and password","Test Case 2: Login User with correct email and password",""
