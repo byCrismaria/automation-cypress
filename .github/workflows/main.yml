@@ -33,34 +33,21 @@ jobs:
 
       - name: Run Cypress tests
         run: ${{ github.event.inputs.cli }}
-
-      - name: Generate Allure Report
+      
+      - name: Build Allure Report
+        uses: simple-elf/allure-report-action@v1.8
         if: always()
-        run: |
-          PATH=$PATH:$(yarn bin)
-          # Copiar histórico se existir
-          if [ -d "allure-history/history" ]; then
-            mkdir -p allure-results/history
-            cp -r allure-history/history allure-results/
-          fi
-          allure generate allure-results -o allure-report --clean
-          # Mover o histórico copiado para o relatório gerado
-          if [ -d "allure-results/history" ]; then
-            cp -r allure-results/history allure-report/
-          fi
-          # Manter apenas o histórico dos últimos 20 testes
-          if [ -d "allure-report/history" ]; then
-            cd allure-report/history
-            ls -tp | grep -v '/$' | tail -n +21 | xargs -I {} rm -- {}
-            cd ../..
-          fi    
-          
-      - name: Deploy report to GitHub Pages
-        if: always()
+        with:
+          gh_pages: allure-history
+          allure_history: allure-history
+          allure_results: allure-results
+            
+      - name: Publish test report
         uses: peaceiris/actions-gh-pages@v4
+        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-report
+          publish_dir: allure-history
           
         
