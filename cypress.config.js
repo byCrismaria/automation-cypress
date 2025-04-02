@@ -14,7 +14,6 @@ module.exports = defineConfig({
     baseUrl: 'https://automationexercise.com',
     setupNodeEvents(on, config) {
       allureWriter(on, config, {
-        resultsDir: "allure-results",
         categories: [
           {
             name: "Ignored tests",
