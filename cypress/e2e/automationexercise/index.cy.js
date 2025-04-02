@@ -69,6 +69,7 @@ describe('test with automation exercise ', () => {
 
     })
 
-
-
+    it('Test Case 4: Cenário para gerar um erro testes', () =>{
+        registerUser.gerrarErro()          
+    })
 })

@@ -1,6 +1,7 @@
 const { defineConfig } = require("cypress");
 const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 const os = require("node:os");
+const { Status } = require("allure-js-commons");
 // Escreve as informações ambientais em um arquivo JSON
 const fs = require('fs');
 const path = require('path');
@@ -12,7 +13,19 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://automationexercise.com',
     setupNodeEvents(on, config) {
-      allureWriter(on, config);
+      allureWriter(on, config, {
+        resultsDir: "allure-results",
+        categories: [
+          {
+            name: "Ignored tests",
+            matchedStatuses: [Status.SKIPPED],
+          },
+          {
+            name: "Product defects",
+            matchedStatuses: [Status.FAILED],
+          }
+        ],
+      });
 
       on('before:run', (details) => {
         // Adiciona informações ambientais ao Allure

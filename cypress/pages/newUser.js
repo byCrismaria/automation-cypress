@@ -5,7 +5,13 @@ class registerUser {
     go(){
         cy.visit('/login')
         cy.title().should('eq', 'Automation Exercise - Signup / Login')
-    }    
+    }  
+    
+    gerrarErro(){
+        cy.visit('/login')
+        cy.title().should('eq', 'Automation Exercise - Signup / Erro')
+    } 
+
     userRegister(dados) {
         //INFORM EMAIL AND USER
         cy
