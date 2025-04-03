@@ -1,19 +1,22 @@
-import { elLoginPageLocators, elCreatAccount, elDeletedAccount, elLoginUser } from "./components"
+import { elLoginPageLocators, elCreatAccount, elDeletedAccount, elLoginUser } from "../../components/components"
 
-class registerUser {
+const registerUser = {
 
-    go(){
+    go:() =>{
+        cy.allure().step("Acessar página de login");
         cy.visit('/login')
         cy.title().should('eq', 'Automation Exercise - Signup / Login')
-    }  
+    }, 
     
-    gerrarErro(){
+    gerrarErro: () => {
+        cy.allure().step("Acessar página de login");
         cy.visit('/login')
         cy.title().should('eq', 'Automation Exercise - Signup / Erro')
-    } 
+    }, 
 
-    userRegister(dados) {
+    userRegister: (dados) => {
         //INFORM EMAIL AND USER
+        cy.allure().step("Preencher formulário de cadastro");
         cy
         .get(elLoginPageLocators.usernameInput).first().click().type('cytestes')
         .get(elLoginPageLocators.emailInput).first().click().type(dados.email)
@@ -37,38 +40,44 @@ class registerUser {
         .get(elLoginPageLocators.zipcodeDate).click().type(dados.zipcode)
         .get(elLoginPageLocators.mobilenumber).click().type(dados.mobile)
         .get(elLoginPageLocators.creatAcount).click()
-    }
+    },
 
-    checkAccountCreated(dados) {
+    checkAccountCreated: (dados) => {
+        cy.allure().step("Verficar se a conta foi criada com sucesso");
         cy
         .get(elCreatAccount.messageCongratulations).contains(dados.messageCongratulations).should('exist')
         .get(elCreatAccount.continueButton).click()
-    }
-    checkAccountDeleted(dados){
+    },
+
+    checkAccountDeleted: (dados) => {
+        cy.allure().step("Verficar se a conta foi deletada com sucesso");
         cy
         .get(elDeletedAccount.deleteButton).click()
         .get(elDeletedAccount.confirmDeleteButton).contains(dados.messageDeleteAccount).should('exist')
 
-    }
-    LoginUser (dados) {
+    },
+    LoginUser: (dados) => {
+        cy.allure().step("Realizar login com usuário já cadastrado");
         cy.get(elLoginUser.elementLoginFormText).should('have.text',elLoginUser.loginFormText)
         cy.get(elLoginUser.inputLogin).click().type(dados.email)
         cy.get(elLoginUser.inputPassword).click().type(dados.emailsenha)
         cy.get(elLoginUser.loginButton).click()
         cy.get(elLoginUser.dadosUserText).should('have.text', dados.userName);  // Finds the <b> element with text "cytestes"
-    }
-    checkSignupLogin (){
+    },
+
+    checkSignupLogin: () => {
+        cy.allure().step("Verficar se o usuário está logado com sucesso");
         cy.get(elLoginUser.signupLoginMenu).click()
-    }
-    checkPasswordIncorrect(dadosUser){
+    },
+
+    checkPasswordIncorrect: (dadosUser) => {
+        cy.allure().step("Verficar se a senha está incorreta");
         cy.get(elLoginUser.elementLoginFormText).should('have.text',elLoginUser.loginFormText)
         cy.get(elLoginUser.inputLogin).click().type(dadosUser.emaillogin)
         cy.get(elLoginUser.inputPassword).click().type(dadosUser.emailsenhaWrong)
         cy.get(elLoginUser.loginButton).click()
         cy.contains(elLoginUser.passwordWrong, elLoginUser.msgpasswordWrong)
     }
-
-
 }
-export default new registerUser;
+export default registerUser;
 

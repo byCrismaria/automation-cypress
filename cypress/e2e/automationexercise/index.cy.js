@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
-import registerUser from '../../pages/newUser'
-
+import registerUser from '../../support/cadastros/newUser'
+import * as allure from "allure-js-commons";
 
 const dados = {
     name: faker.name.firstName(),
@@ -36,13 +36,20 @@ describe('test with automation exercise ', () => {
     //     cy.login(dados.emaillogin, dados.emailsenha);  
     // })
 
+    it('Test Case 1: Register User', () => { 
+        cy.allure().step("Realizar o cadastro de um novo usuário")
+        cy.allure().feature("Cadastro de Usuário")           
+        registerUser.go()
+        registerUser.userRegister(dados)
+        registerUser.checkAccountCreated(dados)
+        registerUser.checkAccountDeleted(dados)
+    })     
+
     it('Test Case 1: Register User', () => {
-        allure.step('Register User', () => {
-            registerUser.go()
-            registerUser.userRegister(dados)
-            registerUser.checkAccountCreated(dados)
-            registerUser.checkAccountDeleted(dados)
-        });
+        registerUser.go()
+        registerUser.userRegister(dados)
+        registerUser.checkAccountCreated(dados)
+        registerUser.checkAccountDeleted(dados)
     })
 
     /*  it('check if the user is already registered', () => {
@@ -56,27 +63,22 @@ describe('test with automation exercise ', () => {
      }) */
 
     it('Test Case 2: Login User with correct email and password', () => {
-        allure.step('Login User', () => {
-            registerUser.go()
-            registerUser.userRegister(dados)
-            registerUser.checkAccountCreated(dados)
-            registerUser.checkSignupLogin()
-            registerUser.go()
-            registerUser.LoginUser(dados)
-            registerUser.checkAccountDeleted(dados)
-        })
+        registerUser.go()
+        registerUser.userRegister(dados)
+        registerUser.checkAccountCreated(dados)
+        registerUser.checkSignupLogin()
+        registerUser.go()
+        registerUser.LoginUser(dados)
+        registerUser.checkAccountDeleted(dados)
     })
 
     it('Test Case 3: Login User with incorrect email and password', () => {
-        allure.step('Login User with incorrect email and password', () => {
-            registerUser.go()
-            registerUser.checkPasswordIncorrect(dadosUser)
-        });
+     
+        registerUser.go()
+        registerUser.checkPasswordIncorrect(dadosUser)
     })
 
-    it('Test Case 4: Cenário para gerar um erro testes', () => { 
-        allure.step('Cenário para gerar um erro', () => {
-            registerUser.gerrarErro()
-        });
+    it('Test Case 4: Cenário para gerar um erro testes', () => {
+       registerUser.gerrarErro()
     })
 })
