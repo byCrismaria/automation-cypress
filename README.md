@@ -1,80 +1,134 @@
 # automation-cypress
 
-## Projeto Cypress para Automação no site AutomationExercise
+Automação de testes end-to-end no site [AutomationExercise](https://automationexercise.com/) usando Cypress e Allure Report.
 
-**Descrição**
+## Descrição
 
-Este projeto Cypress fornece um conjunto de testes para praticar a automação de testes no site AutomationExercise ([https://automationexercise.com/](https://automationexercise.com/)). O projeto inclui testes para diversos cenários, como:
+Este projeto foi desenvolvido para praticar e demonstrar habilidades em automação de testes end-to-end utilizando o framework Cypress. Ele inclui cenários de teste como:
 
-* **Registro de usuário**
-* **Login**
-* **Utilização da função de session**
-* **Navegação no site**
-* **Adição de produtos ao carrinho**
-* **Finalização de compra**
-* **Workflows** 
-* **Instalação**
+- Registro de usuário
+- Login
+- Navegação
+- Finalização de compras
 
-Para baixar e utilizar o projeto, siga estas etapas:
+---
 
-1. **Clone o repositório:**
+## 🚀 Começando
+
+### 1. Clone o repositório
 
 ```bash
 git clone https://github.com/byCrismaria/automation-cypress.git
+cd automation-cypress
 ```
-2. **Instalar o Allure-report**
-   
-```bash
-   npm install -g allure-commandline --save-dev
-```
-**Requisitos de Software**
-Para executar os testes deste projeto, você precisará ter o seguinte software instalado em seu computador:
 
-* **Node.js:** Versão 14 ou superior
-* **Yarn:** Versão 1.22.22 ou superior
-
-
-**Executando os Testes**
-
-Para executar os testes caso não tenha yarn instalado, execute o seguinte comando:
+### 2. Instale as dependências
 
 ```bash
-npx cypress run
+yarn install
 ```
-Para executar os testes caso tenha yarn instalado, execute o seguinte comando:
+
+### 3. Instale o Allure CLI
 
 ```bash
-yarn cypress open
+npm install -g allure-commandline --save-dev
 ```
-**Running Tests com GitHub Actions**
 
-Este projeto inclui até o momento três fluxos de trabalho do GitHub Actions:
-* **Cypress Cloud Integration:** Integração com o cypress cloud; 
-* **Cypress tests:** Geração do relatório Allure-report;
-* **Cypress tesults:** Pipeline multi-browser com Tesult;
+---
 
-**Dependências**
+## ⚙️ Requisitos
 
-O projeto utiliza as seguintes dependências:
+- **Node.js** (versão 14 ou superior)
+- **Yarn** (versão 1.22.22 ou superior)
+- **Google Chrome** instalado
 
-* **@faker-js/faker:** Gera dados de teste falsos, como nomes, endereços e números de telefone.
-* **cypress:** Framework de automação de testes para web.
-* **version:** Gerencia o número da versão do projeto.
-* **yarn:** Gerenciador de pacotes para JavaScript.
+---
 
-**Observações**
+## 🧪 Executando os Testes
 
-* Os testes neste projeto são apenas para fins de demonstração e podem precisar ser atualizados para se adequar a alterações no site AutomationExercise.
-* É recomendável que você leia a documentação do Cypress antes de usar este projeto.
+### Abrir a interface do Cypress
 
-**Recursos Adicionais**
+```bash
+yarn cy:open
+```
 
-* Documentação do Cypress: [https://docs.cypress.io/guides/overview/why-cypress](https://docs.cypress.io/guides/overview/why-cypress)
-* Site AutomationExercise: [https://automationexercise.com/](https://automationexercise.com/)
-* Documentação Faker: [https://fakerjs.dev/guide/](https://fakerjs.dev/guide/)
-* Documentação Allure-report: [https://allurereport.org/docs/cypress/](https://allurereport.org/docs/cypress/)
-* Documentação Tesults: [https://www.tesults.com/docs/cypress](https://www.tesults.com/docs/cypress)  
+### Rodar os testes via terminal (modo headless)
 
-**Contribuições**
+```bash
+yarn cy:run
+```
 
-Se você tiver alguma sugestão ou melhoria para este projeto, sinta-se à vontade para contribuir no repositório GitHub.
+---
+
+## 📊 Gerando o Relatório Allure
+
+### 1. Gerar o relatório
+
+Após executar os testes:
+
+```bash
+yarn allure:report
+```
+
+### 2. Abrir o relatório no navegador
+
+```bash
+yarn allure:open
+```
+
+### 3. Limpar diretórios de resultados (opcional)
+
+- **Unix/Linux/Mac:**
+
+```bash
+yarn allure:clearUnix
+```
+
+- **Windows:**
+
+```bash
+yarn allure:clearWin
+```
+
+---
+
+## ☁️ GitHub Actions
+
+Este projeto inclui três workflows com GitHub Actions:
+
+- **Cypress Cloud Integration** – Integração com Cypress Cloud.
+- **Cypress Tests** – Geração do relatório Allure com gráficos e tendências.
+- **Cypress Tesults** – Pipeline multi-browser com integração Tesults.
+
+---
+
+## 📦 Dependências
+
+- `@faker-js/faker` – Geração de dados falsos.
+- `cypress` – Framework de testes.
+- `version` – Controle de versão.
+- `yarn` – Gerenciador de pacotes.
+
+---
+
+## 📝 Observações
+
+- Os testes são apenas para fins educacionais/demonstração.
+- O site AutomationExercise pode sofrer alterações, o que pode impactar os testes.
+- Consulte a documentação do Cypress para melhor entendimento do funcionamento.
+
+---
+
+## 📚 Recursos Úteis
+
+- [Documentação Cypress](https://docs.cypress.io/guides/overview/why-cypress)
+- [AutomationExercise](https://automationexercise.com/)
+- [Faker.js](https://fakerjs.dev/guide/)
+- [Allure Report + Cypress](https://allurereport.org/docs/cypress/)
+- [Tesults + Cypress](https://www.tesults.com/docs/cypress)
+
+---
+
+## 🤝 Contribuições
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests com sugestões, correções ou melhorias.

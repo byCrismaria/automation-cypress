@@ -1,12 +1,17 @@
-import { elLoginPageLocators, elCreatAccount, elDeletedAccount, elLoginUser } from "./components"
+import { elLoginPageLocators, elCreatAccount, elDeletedAccount, elLoginUser } from "../../components/components"
+const registerUser = {
 
-class registerUser {
-
-    go(){
+    go:() =>{
         cy.visit('/login')
         cy.title().should('eq', 'Automation Exercise - Signup / Login')
-    }    
-    userRegister(dados) {
+    }, 
+    
+    gerrarErro: () => {
+        cy.visit('/login')
+        cy.title().should('eq', 'Automation Exercise - Signup / Erro')
+    }, 
+
+    userRegister: (dados) => {
         //INFORM EMAIL AND USER
         cy
         .get(elLoginPageLocators.usernameInput).first().click().type('cytestes')
@@ -31,38 +36,38 @@ class registerUser {
         .get(elLoginPageLocators.zipcodeDate).click().type(dados.zipcode)
         .get(elLoginPageLocators.mobilenumber).click().type(dados.mobile)
         .get(elLoginPageLocators.creatAcount).click()
-    }
+    },
 
-    checkAccountCreated(dados) {
-        cy
-        .get(elCreatAccount.messageCongratulations).contains(dados.messageCongratulations).should('exist')
-        .get(elCreatAccount.continueButton).click()
-    }
-    checkAccountDeleted(dados){
-        cy
-        .get(elDeletedAccount.deleteButton).click()
-        .get(elDeletedAccount.confirmDeleteButton).contains(dados.messageDeleteAccount).should('exist')
+    checkAccountCreated: (dados) => {
+        cy.get(elCreatAccount.messageCongratulations).contains(dados.messageCongratulations).should('exist')
+        cy.get(elCreatAccount.continueButton).click()
+    },
 
-    }
-    LoginUser (dados) {
+    checkAccountDeleted: (dados) => {
+
+        cy.get(elDeletedAccount.deleteButton).click()
+        cy.get(elDeletedAccount.confirmDeleteButton).contains(dados.messageDeleteAccount).should('exist')
+
+    },
+    LoginUser: (dados) => {
         cy.get(elLoginUser.elementLoginFormText).should('have.text',elLoginUser.loginFormText)
         cy.get(elLoginUser.inputLogin).click().type(dados.email)
         cy.get(elLoginUser.inputPassword).click().type(dados.emailsenha)
         cy.get(elLoginUser.loginButton).click()
         cy.get(elLoginUser.dadosUserText).should('have.text', dados.userName);  // Finds the <b> element with text "cytestes"
-    }
-    checkSignupLogin (){
+    },
+
+    checkSignupLogin: () => {
         cy.get(elLoginUser.signupLoginMenu).click()
-    }
-    checkPasswordIncorrect(dadosUser){
+    },
+
+    checkPasswordIncorrect: (dadosUser) => {
         cy.get(elLoginUser.elementLoginFormText).should('have.text',elLoginUser.loginFormText)
         cy.get(elLoginUser.inputLogin).click().type(dadosUser.emaillogin)
         cy.get(elLoginUser.inputPassword).click().type(dadosUser.emailsenhaWrong)
         cy.get(elLoginUser.loginButton).click()
         cy.contains(elLoginUser.passwordWrong, elLoginUser.msgpasswordWrong)
     }
-
-
 }
-export default new registerUser;
+export default registerUser;
 

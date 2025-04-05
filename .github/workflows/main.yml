@@ -1,69 +1,52 @@
-name: Cypress tests
+name: Cypress tests with Allure Report
+
 on: 
   workflow_dispatch: 
     inputs: 
       cli:
-        description: Run by cypress command line
-        default: yarn cypress run --reporter mocha-allure-reporter
+        description: Run Cypress tests via command line
+        default: yarn cypress run --env allure=true
+
 jobs:
   cyress-electron-tests:
     runs-on: ubuntu-latest
     steps: 
-      - name: Get Code
+      - name: Checkout repository
         uses: actions/checkout@v4
       
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-      - name: Install dependencies
-        run: 
-          yarn add --dev allure-commandline 
-          
-      - name: Run E2E tests
-        run: ${{ github.event.inputs.cli }}
 
-      - name: Generate Allure report
-        run: 
-          PATH=$PATH:$(yarn bin)
-          allure generate allure-results -o allure-report
-      
-      - name: Upload Allure Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: allure-results
-      
-      - name: Checkout gh-pages
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Load test report history
         uses: actions/checkout@v4
-        if: ${{ success() }}
+        if: always()
+        continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
-          fetch-depth: 1
-      
-      - name: Copy Allure Report to gh-pages
-        if: ${{ success() }}
-        run: |
-          mkdir -p gh-pages/allure-report
-          cp -r allure-report/** gh-pages/allure-report/
-      
-      - name: Commit and Push Allure Report
-        uses: stefanzweifel/git-auto-commit-action@v5
-        if: ${{ success() }}
-        with:
-          commit_message: "Update Allure Report"
-          branch: gh-pages
-          file_pattern: gh-pages/allure-report/**/**
 
-      - name: Publish Allure Report to GitHub Pages
+      - name: Run Cypress tests
+        run: ${{ github.event.inputs.cli }}
+              
+      - name: Build Allure Report
+        uses: simple-elf/allure-report-action@v1.8
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: allure-results
+            
+      - name: Publish test report
         uses: peaceiris/actions-gh-pages@v4
-        if: ${{ success() }}
+        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: gh-pages/allure-report
-      
-
-
-      
+          publish_dir: allure-history
+          
+        
