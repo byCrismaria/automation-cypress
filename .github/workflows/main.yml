@@ -5,7 +5,6 @@ on:
     inputs: 
       cli:
         description: Run Cypress tests via command line
-        #default: yarn cypress run --reporter mocha-allure-reporter 
         default: yarn cypress run --env allure=true
 
 jobs:
