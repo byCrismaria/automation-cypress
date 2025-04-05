@@ -1,22 +1,18 @@
 import { elLoginPageLocators, elCreatAccount, elDeletedAccount, elLoginUser } from "../../components/components"
-
 const registerUser = {
 
     go:() =>{
-        cy.allure().step("Acessar página de login");
         cy.visit('/login')
         cy.title().should('eq', 'Automation Exercise - Signup / Login')
     }, 
     
     gerrarErro: () => {
-        cy.allure().step("Acessar página de login");
         cy.visit('/login')
         cy.title().should('eq', 'Automation Exercise - Signup / Erro')
     }, 
 
     userRegister: (dados) => {
         //INFORM EMAIL AND USER
-        cy.allure().step("Preencher formulário de cadastro");
         cy
         .get(elLoginPageLocators.usernameInput).first().click().type('cytestes')
         .get(elLoginPageLocators.emailInput).first().click().type(dados.email)
@@ -43,21 +39,17 @@ const registerUser = {
     },
 
     checkAccountCreated: (dados) => {
-        cy.allure().step("Verficar se a conta foi criada com sucesso");
-        cy
-        .get(elCreatAccount.messageCongratulations).contains(dados.messageCongratulations).should('exist')
-        .get(elCreatAccount.continueButton).click()
+        cy.get(elCreatAccount.messageCongratulations).contains(dados.messageCongratulations).should('exist')
+        cy.get(elCreatAccount.continueButton).click()
     },
 
     checkAccountDeleted: (dados) => {
-        cy.allure().step("Verficar se a conta foi deletada com sucesso");
-        cy
-        .get(elDeletedAccount.deleteButton).click()
-        .get(elDeletedAccount.confirmDeleteButton).contains(dados.messageDeleteAccount).should('exist')
+
+        cy.get(elDeletedAccount.deleteButton).click()
+        cy.get(elDeletedAccount.confirmDeleteButton).contains(dados.messageDeleteAccount).should('exist')
 
     },
     LoginUser: (dados) => {
-        cy.allure().step("Realizar login com usuário já cadastrado");
         cy.get(elLoginUser.elementLoginFormText).should('have.text',elLoginUser.loginFormText)
         cy.get(elLoginUser.inputLogin).click().type(dados.email)
         cy.get(elLoginUser.inputPassword).click().type(dados.emailsenha)
@@ -66,12 +58,10 @@ const registerUser = {
     },
 
     checkSignupLogin: () => {
-        cy.allure().step("Verficar se o usuário está logado com sucesso");
         cy.get(elLoginUser.signupLoginMenu).click()
     },
 
     checkPasswordIncorrect: (dadosUser) => {
-        cy.allure().step("Verficar se a senha está incorreta");
         cy.get(elLoginUser.elementLoginFormText).should('have.text',elLoginUser.loginFormText)
         cy.get(elLoginUser.inputLogin).click().type(dadosUser.emaillogin)
         cy.get(elLoginUser.inputPassword).click().type(dadosUser.emailsenhaWrong)

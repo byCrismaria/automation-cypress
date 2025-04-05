@@ -1,6 +1,5 @@
 import { faker } from '@faker-js/faker';
 import registerUser from '../../support/cadastros/newUser'
-import * as allure from "allure-js-commons";
 
 const dados = {
     name: faker.name.firstName(),
@@ -36,9 +35,7 @@ describe('test with automation exercise ', () => {
     //     cy.login(dados.emaillogin, dados.emailsenha);  
     // })
 
-    it('Test Case 1: Register User', () => { 
-        cy.allure().step("Realizar o cadastro de um novo usuário")
-        cy.allure().feature("Cadastro de Usuário")           
+    it('Test Case 1: Register User', () => {       
         registerUser.go()
         registerUser.userRegister(dados)
         registerUser.checkAccountCreated(dados)
