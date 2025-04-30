@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Wed Apr 30 00:27:48 GMT 2025","Wed Apr 30 00:27:54 GMT 2025","5484","","test with automation exercise ","","","","Test Case 4: Cenário para gerar um erro testes",""
+"passed","Wed Apr 30 00:27:31 GMT 2025","Wed Apr 30 00:27:37 GMT 2025","6432","","test with automation exercise ","","","","Test Case 1: Register User",""
+"passed","Wed Apr 30 00:27:37 GMT 2025","Wed Apr 30 00:27:47 GMT 2025","9279","","test with automation exercise ","","","","Test Case 2: Login User with correct email and password",""
+"passed","Wed Apr 30 00:27:47 GMT 2025","Wed Apr 30 00:27:48 GMT 2025","1308","","test with automation exercise ","","","","Test Case 3: Login User with incorrect email and password",""
